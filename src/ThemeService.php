@@ -60,7 +60,7 @@ class ThemeService  {
      *
      * @return mixed
      */
-    public function modules() {
+    public function themes() {
         $modules = $this->themeCache
             ->toArray();
 
