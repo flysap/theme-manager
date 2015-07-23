@@ -1,0 +1,5 @@
+# here will be declared theme folder
+theme_path: themes
+
+# here will be declared cache folder .
+cache_dir: bootstrap/cache

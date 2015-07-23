@@ -1,6 +1,6 @@
 <?php
 
-namespace Flysap\ModuleManager;
+namespace Flysap\ThemeManager;
 
 use Illuminate\Support\ServiceProvider;
 use Symfony\Component\Yaml\Yaml;
