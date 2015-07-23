@@ -3,6 +3,7 @@
 namespace Flysap\ThemeManager;
 
 use Illuminate\Support\ServiceProvider;
+use Symfony\Component\Finder\Finder;
 use Symfony\Component\Yaml\Yaml;
 
 class ThemeServiceProvider extends ServiceProvider {
@@ -23,6 +24,26 @@ class ThemeServiceProvider extends ServiceProvider {
      */
     public function register() {
 
+        /** Theme uploader . */
+        $this->app->singleton('theme-manager', function() {
+            return new ThemeManager(
+                new Finder()
+            );
+        });
+
+        /** Register caching theme . */
+        $this->app->singleton('theme-caching', function() {
+            return new ThemeCache(
+                new Finder()
+            );
+        });
+
+        /** Register theme manager service layer . */
+        $this->app->singleton('theme-service', function($app) {
+            return new ThemeService(
+                $app['theme-caching'], $app['theme-manager']
+            );
+        });
     }
 
     /**

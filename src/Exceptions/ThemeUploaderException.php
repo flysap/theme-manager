@@ -1,5 +1,5 @@
 <?php
 
-namespace Flysap\ModuleManager\Exceptions;
+namespace Flysap\ThemeManager\Exceptions;
 
 class ThemeUploaderException extends \Exception {}

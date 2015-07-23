@@ -2,7 +2,7 @@
 
 namespace Flysap\ThemeManager;
 
-use Flysap\ModuleManager\Exceptions\ThemeUploaderException;
+use Flysap\ThemeManager\Exceptions\ThemeUploaderException;
 use Symfony\Component\Finder\Finder;
 use Symfony\Component\HttpFoundation\File\UploadedFile;
 use ZipArchive;

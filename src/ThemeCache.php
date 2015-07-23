@@ -2,7 +2,7 @@
 
 namespace Flysap\ThemeManager;
 
-use Flysap\ModuleManager\Exceptions\ThemeUploaderException;
+use Flysap\ThemeManager\Exceptions\ThemeUploaderException;
 use Illuminate\Contracts\Support\Arrayable;
 use Symfony\Component\Finder\Finder;
 use Flysap\Support;
