@@ -128,7 +128,7 @@ class ThemeManager {
      * @return mixed
      * @throws ThemeUploaderException
      */
-    protected function getStoragePath() {
+    public function getStoragePath() {
         $path = config('theme-manager.theme_path');
 
         if (! $path || $path == '')

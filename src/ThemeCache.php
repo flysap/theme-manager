@@ -116,6 +116,7 @@ class ThemeCache implements Arrayable {
     /**
      * Get storage path .
      *
+     * @param bool $asFull
      * @return mixed
      * @throws ThemeUploaderException
      */
@@ -136,6 +137,7 @@ class ThemeCache implements Arrayable {
     /**
      * Get cache path .
      *
+     * @param bool $asFull
      * @return mixed
      * @throws ThemeUploaderException
      */
