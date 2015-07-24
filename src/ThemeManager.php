@@ -140,6 +140,23 @@ class ThemeManager {
     }
 
     /**
+     * Get storage path .
+     *
+     * @return mixed
+     * @throws ThemeUploaderException
+     */
+    public function getCachePath() {
+        $path = config('theme-manager.cache_dir');
+
+        if (! $path || $path == '')
+            throw new ThemeUploaderException(
+                _("Cannot fine storage path for modules.")
+            );
+
+        return $path;
+    }
+
+    /**
      * Get configuration file .
      *
      * @param UploadedFile $module
