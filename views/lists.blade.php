@@ -12,7 +12,7 @@
                     <span class="sr-only">Toggle Dropdown</span>
                 </button>
                 <ul class="dropdown-menu" role="menu">
-                    <li><a href="#">{{_('Install')}}</a></li>
+                    <li><a href="/theme-manager/upload">{{_('Install')}}</a></li>
                 </ul>
             </div>
 
