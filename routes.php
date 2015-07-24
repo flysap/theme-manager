@@ -31,7 +31,9 @@ Route::group(['prefix' => 'theme-manager'], function() {
 
         $themes = $service->themes();
 
-        return view('theme-manager::lists', ['themes' => $themes]);
+        return view('theme-manager::lists', ['data' => $themes, 'fields' => [
+            'Name','Description','Version'
+        ]]);
     }]);
 
     /**
