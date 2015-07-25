@@ -15,6 +15,10 @@ class ThemeServiceProvider extends ServiceProvider {
         $this->loadRoutes()
             ->loadConfiguration()
             ->loadViews();
+
+        view()->share('total_themes', count(
+            app('theme-caching')->toArray()
+        ));
     }
 
     /**
