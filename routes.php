@@ -1,6 +1,7 @@
 <?php
 
 use Illuminate\Http\Request;
+use Flysap\TableManager;
 
 Route::group(['prefix' => 'theme-manager'], function() {
 
@@ -31,9 +32,12 @@ Route::group(['prefix' => 'theme-manager'], function() {
 
         $themes = $service->themes();
 
-        return view('theme-manager::lists', ['data' => $themes, 'fields' => [
-            'Name','Description','Version'
-        ]]);
+        $table = TableManager\table('Collection', array(
+            'columns' => array('name','description','version'),
+            'rows'    => $themes
+        ), ['class' => 'table table-bordered table-striped dataTable']);
+
+        return view('theme-manager::lists', compact('table'));
     }]);
 
     /**
