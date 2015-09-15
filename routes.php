@@ -32,10 +32,10 @@ Route::group(['prefix' => 'theme-manager'], function() {
 
         $themes = $service->themes();
 
-        $table = TableManager\table('Collection', array(
+        $table = TableManager\table(array(
             'columns' => array('name','description','version'),
             'rows'    => $themes
-        ), ['class' => 'table table-bordered table-striped dataTable']);
+        ), 'collection', ['class' => 'table table-bordered table-striped dataTable']);
 
         return view('theme-manager::lists', compact('table'));
     }]);
