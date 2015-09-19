@@ -4,7 +4,7 @@ namespace Flysap\ThemeManager;
 
 use Illuminate\Support\ServiceProvider;
 use Symfony\Component\Finder\Finder;
-use Symfony\Component\Yaml\Yaml;
+use Flysap\Support;
 
 class ThemeServiceProvider extends ServiceProvider {
 
@@ -69,13 +69,9 @@ class ThemeServiceProvider extends ServiceProvider {
      * @return $this
      */
     protected function loadConfiguration() {
-        $array = Yaml::parse(file_get_contents(
-            __DIR__ . '/../configuration/general.yaml'
-        ));
-
-        $config = $this->app['config']->get('theme-manager', []);
-
-        $this->app['config']->set('theme-manager', array_merge($array, $config));
+        Support\set_config_from_yaml(
+            __DIR__ . '/../configuration/general.yaml' , 'theme-manager'
+        );
 
         return $this;
     }
