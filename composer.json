@@ -2,7 +2,6 @@
     "name": "flysap/theme-manager",
     "description": "SMG",
     "require": {
-        "flysap/administrator": "dev-master",
         "laravel/framework": "~5.1",
         "symfony/yaml": "~2.7"
     },
