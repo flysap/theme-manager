@@ -2,9 +2,9 @@
 
 namespace Flysap\ThemeManager\Parsers;
 
-use Flysap\ModuleManager\Contracts\ConfigParserContract;
+use Flysap\ThemeManager\Parsable;
 
-class Json implements ConfigParserContract {
+class Json implements Parsable {
 
     /**
      * Parse file ..

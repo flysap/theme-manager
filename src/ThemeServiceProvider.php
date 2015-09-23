@@ -16,6 +16,8 @@ class ThemeServiceProvider extends ServiceProvider {
             ->loadConfiguration()
             ->loadViews();
 
+        $this->registerMenu();
+
         view()->share('total_themes', count(
             app('theme-caching')->toArray()
         ));
@@ -48,6 +50,16 @@ class ThemeServiceProvider extends ServiceProvider {
                 $app['theme-caching'], $app['theme-manager']
             );
         });
+    }
+
+    /**
+     * Register menu .
+     *
+     */
+    protected function registerMenu() {
+        $menuManager = app('menu-manager');
+
+        $menuManager->addNamespace(realpath(__DIR__ . '/../'), true);
     }
 
     /**
