@@ -7,12 +7,12 @@
     {
       "section": "Theme Manager",
       "label"  : "Install",
-      "href"   : "/theme-manager/upload"
+      "href"   : "/admin/theme-manager/upload"
     },
     {
       "section": "Theme Manager",
       "label"  : "Themes (:total_themes)",
-      "href"   : "/theme-manager/lists"
+      "href"   : "/admin/theme-manager/lists"
     }
   ]
 }

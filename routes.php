@@ -3,7 +3,7 @@
 use Illuminate\Http\Request;
 use Flysap\TableManager;
 
-Route::group(['prefix' => 'theme-manager'], function() {
+Route::group(['prefix' => 'admin/theme-manager', 'middleware' => 'role:admin'], function() {
 
     /**
      * Route for theme installation
