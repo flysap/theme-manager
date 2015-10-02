@@ -5,13 +5,13 @@
 
   "menu": [
     {
-      "section": "Theme Manager",
+      "section": "Themes",
       "label"  : "Install",
       "href"   : "/admin/theme-manager/upload"
     },
     {
-      "section": "Theme Manager",
-      "label"  : "Themes (:total_themes)",
+      "section": "Themes",
+      "label"  : "Installed (:total_themes)",
       "href"   : "/admin/theme-manager/lists"
     }
   ]

@@ -1,7 +1,7 @@
 <?php
 
 use Illuminate\Http\Request;
-use Flysap\TableManager;
+use Parfumix\TableManager;
 
 Route::group(['prefix' => 'admin/theme-manager', 'middleware' => 'role:admin'], function() {
 
