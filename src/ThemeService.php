@@ -67,6 +67,22 @@ class ThemeService  {
         return $modules;
     }
 
+    /**
+     * Activate theme .
+     *
+     * @param $theme
+     * @return \Illuminate\Http\RedirectResponse
+     */
     public function activate($theme) {
+        if( ! $this->repository->setDefaultTheme($theme) )
+            return back();
+
+        app('view')->addLocation(
+            app_path('../themes/' . $theme)
+        );
+
+        app('view')->addNamespace(
+            'themes', app_path('../themes/' . $theme)
+        );
     }
 }
