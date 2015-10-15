@@ -55,6 +55,7 @@ class Repository implements Arrayable {
         return $this;
     }
 
+
     /**
      * Get array cached ..
      *
@@ -115,6 +116,49 @@ class Repository implements Arrayable {
         return array_only($modules, $keys ? $keys : array_keys($modules));
     }
 
+
+    /**
+     * Check if theme is installed .
+     *
+     * @param $theme
+     * @return bool
+     */
+    public function isInstalled($theme) {
+        return in_array($theme, array_keys($this->toArray()));
+    }
+
+
+    /**
+     * Get activated theme .
+     *
+     * @return mixed
+     * @throws ThemeUploaderException
+     */
+    public function getActivated() {
+        if( Support\is_path_exists( $this->getCachePath() . DIRECTORY_SEPARATOR . self::DEFAULT_THEME ) ) {
+            $theme = file_get_contents( $this->getCachePath() . DIRECTORY_SEPARATOR . self::DEFAULT_THEME );
+
+            return json_decode($theme);
+        }
+    }
+
+    /**
+     * Set default theme .
+     *
+     * @param $theme
+     * @return bool
+     * @throws ThemeUploaderException
+     */
+    public function activate($theme) {
+        if( $this->isInstalled($theme) ) {
+
+            Support\dump_file($this->getCachePath() . DIRECTORY_SEPARATOR . self::DEFAULT_THEME, json_encode($theme));
+
+            return true;
+        }
+    }
+
+
     /**
      * Get storage path .
      *
@@ -157,32 +201,6 @@ class Repository implements Arrayable {
             );
 
         return $path;
-    }
-
-    /**
-     * Check if theme is installed .
-     *
-     * @param $theme
-     * @return bool
-     */
-    public function isInstalled($theme) {
-        return in_array($theme, array_keys($this->toArray()));
-    }
-
-    /**
-     * Set default theme .
-     *
-     * @param $theme
-     * @return bool
-     * @throws ThemeUploaderException
-     */
-    public function setDefaultTheme($theme) {
-        if( $this->isInstalled($theme) ) {
-
-            Support\dump_file($this->getCachePath() . DIRECTORY_SEPARATOR . self::DEFAULT_THEME, json_encode($theme));
-
-            return true;
-        }
     }
 
 }
