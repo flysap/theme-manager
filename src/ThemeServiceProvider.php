@@ -18,8 +18,12 @@ class ThemeServiceProvider extends ServiceProvider {
 
         $this->registerMenu();
 
+        /** On bootstrap set active theme . */
+        app('theme-service')
+            ->activate(config('theme-manager.default_theme'));
+
         view()->share('total_themes', count(
-            app('theme-caching')->toArray()
+            app('theme-repository')->toArray()
         ));
     }
 
@@ -32,22 +36,22 @@ class ThemeServiceProvider extends ServiceProvider {
 
         /** Theme uploader . */
         $this->app->singleton('theme-manager', function() {
-            return new Manager(
-                new Finder()
+            return new Uploader(
+                new Finder
             );
         });
 
         /** Register caching theme . */
-        $this->app->singleton('theme-caching', function() {
+        $this->app->singleton('theme-repository', function() {
             return new Repository(
-                new Finder()
+                new Finder
             );
         });
 
         /** Register theme manager service layer . */
         $this->app->singleton('theme-service', function($app) {
             return new ThemeService(
-                $app['theme-caching'], $app['theme-manager']
+                $app['theme-repository'], $app['theme-manager']
             );
         });
     }
