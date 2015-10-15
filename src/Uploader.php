@@ -8,7 +8,7 @@ use Symfony\Component\HttpFoundation\File\UploadedFile;
 use ZipArchive;
 use Flysap\Support;
 
-class Manager {
+class Uploader {
 
     /**
      * @var \Symfony\Component\Finder\Finder
