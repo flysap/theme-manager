@@ -20,7 +20,7 @@ class ThemeServiceProvider extends ServiceProvider {
 
         /** On bootstrap set active theme . */
         app('theme-service')
-            ->activate(config('theme-manager.default_theme'));
+            ->setDefault();
 
         view()->share('total_themes', count(
             app('theme-repository')->toArray()
