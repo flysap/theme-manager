@@ -48,4 +48,13 @@ Route::group(['prefix' => 'admin/theme-manager', 'middleware' => 'role:admin'], 
         return app('theme-service')
             ->remove($theme);
     }]);
+
+    /**
+     * Activate theme.
+     *
+     */
+    Route::get('activate/{theme}', ['as' => 'theme-activate', function($theme) {
+        return app('theme-service')
+            ->activate($theme);
+    }])->where(['theme' => "^(.)*"]);
 });

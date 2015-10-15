@@ -12,13 +12,13 @@ class ThemeService  {
     private $repository;
 
     /**
-     * @var manager
+     * @var uploader
      */
-    private $manager;
+    private $uploader;
 
-    public function __construct(Repository $repository, Manager $manager) {
+    public function __construct(Repository $repository, Uploader $uploader) {
         $this->repository = $repository;
-        $this->manager = $manager;
+        $this->uploader = $uploader;
     }
 
     /**
@@ -28,7 +28,7 @@ class ThemeService  {
      * @return mixed
      */
     public function install(UploadedFile $module) {
-        if( $configuration = $this->manager
+        if( $configuration = $this->uploader
             ->upload($module) ) {
 
             $this->repository
@@ -45,7 +45,7 @@ class ThemeService  {
      * @return mixed
      */
     public function remove($module) {
-        $this->manager
+        $this->uploader
             ->remove($module);
 
         $this->repository
@@ -65,5 +65,8 @@ class ThemeService  {
             ->toArray();
 
         return $modules;
+    }
+
+    public function activate($theme) {
     }
 }
