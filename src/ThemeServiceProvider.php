@@ -22,9 +22,16 @@ class ThemeServiceProvider extends ServiceProvider {
         app('theme-service')
             ->setDefault();
 
-        view()->share('total_themes', count(
+        $totalThemes = count(
             app('theme-repository')->toArray()
-        ));
+        );
+        view()->share('total_themes', $totalThemes);
+
+
+        /** Register modules widget . */
+        app('widget-manager')->addWidget('themes', function() use($totalThemes) {
+            return view('themes::widgets.uploads', ['value' => $totalThemes, 'title' => 'Themes']);
+        });
     }
 
     /**
