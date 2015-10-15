@@ -56,25 +56,13 @@ class ThemeService  {
     }
 
     /**
-     * Show list of modules .
-     *
-     * @return mixed
-     */
-    public function themes() {
-        $modules = $this->repository
-            ->toArray();
-
-        return $modules;
-    }
-
-    /**
      * Activate theme .
      *
      * @param $theme
      * @return \Illuminate\Http\RedirectResponse
      */
     public function activate($theme) {
-        if( ! $this->repository->setDefaultTheme($theme) )
+        if( ! $this->repository->activate($theme) )
             return back();
 
         app('view')->addLocation(
@@ -84,5 +72,16 @@ class ThemeService  {
         app('view')->addNamespace(
             'themes', app_path('../themes/' . $theme)
         );
+    }
+
+    /**
+     * Set default theme .
+     *
+     */
+    public function setDefault() {
+        if( ! $defaultTheme = $this->repository->getActivated() )
+            $defaultTheme = config('theme-manager.default_theme');
+
+        $this->activate($defaultTheme);
     }
 }
