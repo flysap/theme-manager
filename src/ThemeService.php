@@ -72,6 +72,8 @@ class ThemeService  {
         app('view')->addNamespace(
             'themes', app_path('../themes/' . $theme)
         );
+
+        return back();
     }
 
     /**

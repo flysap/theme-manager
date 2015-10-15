@@ -33,7 +33,18 @@ Route::group(['prefix' => 'admin/theme-manager', 'middleware' => 'role:admin'], 
         $themes = $repository->toArray();
 
         $table = TableManager\table(array(
-            'columns' => array('name','description','version'),
+            'columns' => array('name' => ['closure' => function($value) {
+                $activate = route('theme-activate', ['theme' => $value]);
+
+                $template = <<<HTML
+$value
+<div class="tools">
+    <a href="$activate"><i class="fa fa-check-square-o"></i></a>
+</div>
+HTML;
+                return $template;
+
+            }],'description','version'),
             'rows'    => $themes
         ), 'collection', ['class' => 'table table-bordered table-striped dataTable']);
 
