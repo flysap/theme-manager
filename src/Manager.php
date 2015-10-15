@@ -8,13 +8,7 @@ use Symfony\Component\HttpFoundation\File\UploadedFile;
 use ZipArchive;
 use Flysap\Support;
 
-/**
- * Module uploader processing ..
- *
- * Class ModuleUploader
- * @package Flysap\ModuleManger
- */
-class ThemeManager {
+class Manager {
 
     /**
      * @var \Symfony\Component\Finder\Finder
