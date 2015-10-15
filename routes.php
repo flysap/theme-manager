@@ -28,9 +28,9 @@ Route::group(['prefix' => 'admin/theme-manager', 'middleware' => 'role:admin'], 
      * Route for lists theme ..
      */
     Route::get('lists/{page?}', ['as' => 'theme-lists', function() {
-        $service = app('theme-service');
+        $repository = app('theme-repository');
 
-        $themes = $service->themes();
+        $themes = $repository->toArray();
 
         $table = TableManager\table(array(
             'columns' => array('name','description','version'),
