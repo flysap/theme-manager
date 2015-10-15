@@ -1,24 +1,24 @@
 <?php
 
-namespace Flysap\themeManager;
+namespace Flysap\ThemeManager;
 
 use Symfony\Component\HttpFoundation\File\UploadedFile;
 
 class ThemeService  {
 
     /**
-     * @var ThemeCache
+     * @var repository
      */
-    private $themeCache;
+    private $repository;
 
     /**
-     * @var ThemeManager
+     * @var manager
      */
-    private $themeManager;
+    private $manager;
 
-    public function __construct(ThemeCache $themeCache, ThemeManager $themeManager) {
-        $this->themeCache = $themeCache;
-        $this->themeManager = $themeManager;
+    public function __construct(Repository $repository, Manager $manager) {
+        $this->repository = $repository;
+        $this->manager = $manager;
     }
 
     /**
@@ -28,10 +28,10 @@ class ThemeService  {
      * @return mixed
      */
     public function install(UploadedFile $module) {
-        if( $configuration = $this->themeManager
+        if( $configuration = $this->manager
             ->upload($module) ) {
 
-            $this->themeCache
+            $this->repository
                 ->flush();
 
             return true;
@@ -45,10 +45,10 @@ class ThemeService  {
      * @return mixed
      */
     public function remove($module) {
-        $this->themeManager
+        $this->manager
             ->remove($module);
 
-        $this->themeCache
+        $this->repository
             ->flush();
 
         return redirect()
@@ -61,7 +61,7 @@ class ThemeService  {
      * @return mixed
      */
     public function themes() {
-        $modules = $this->themeCache
+        $modules = $this->repository
             ->toArray();
 
         return $modules;

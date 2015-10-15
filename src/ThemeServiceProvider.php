@@ -32,14 +32,14 @@ class ThemeServiceProvider extends ServiceProvider {
 
         /** Theme uploader . */
         $this->app->singleton('theme-manager', function() {
-            return new ThemeManager(
+            return new Manager(
                 new Finder()
             );
         });
 
         /** Register caching theme . */
         $this->app->singleton('theme-caching', function() {
-            return new ThemeCache(
+            return new Repository(
                 new Finder()
             );
         });
