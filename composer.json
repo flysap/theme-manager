@@ -5,10 +5,15 @@
       {
         "type": "git",
         "url": "git@github.com:flysap/support.git"
+      },
+      {
+        "type": "git",
+        "url": "git@github.com:flysap/application.git"
       }
     ],
     "require": {
         "laravel/framework": "~5.1",
+        "flysap/application": "dev-master",
         "flysap/support": "dev-master"
     },
     "license": "MIT",
