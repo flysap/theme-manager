@@ -11,6 +11,8 @@ class Repository implements Arrayable {
 
     const CACHE_FILE = 'themes.json';
 
+    const DEFAULT_THEME = 'default_theme.json';
+
     /**
      * @var
      */
@@ -155,6 +157,32 @@ class Repository implements Arrayable {
             );
 
         return $path;
+    }
+
+    /**
+     * Check if theme is installed .
+     *
+     * @param $theme
+     * @return bool
+     */
+    public function isInstalled($theme) {
+        return in_array($theme, array_keys($this->toArray()));
+    }
+
+    /**
+     * Set default theme .
+     *
+     * @param $theme
+     * @return bool
+     * @throws ThemeUploaderException
+     */
+    public function setDefaultTheme($theme) {
+        if( $this->isInstalled($theme) ) {
+
+            Support\dump_file($this->getCachePath() . DIRECTORY_SEPARATOR . self::DEFAULT_THEME, json_encode($theme));
+
+            return true;
+        }
     }
 
 }
