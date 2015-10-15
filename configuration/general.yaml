@@ -3,3 +3,6 @@ theme_path: themes
 
 # here will be declared cache folder .
 cache_dir: bootstrap/cache
+
+# here will be set up active theme .
+default_theme: flysap/admin-lte
