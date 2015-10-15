@@ -41,15 +41,20 @@ class ThemeService  {
     /**
      * Remove module ..
      *
-     * @param $module
+     * @param $theme
      * @return mixed
      */
-    public function remove($module) {
-        $this->uploader
-            ->remove($module);
+    public function remove($theme) {
+        if( count($this->repository->toArray()) > 1 ) {
+            if( $theme == $this->repository->getActivated() )
+                return back();
 
-        $this->repository
-            ->flush();
+            $this->uploader
+                ->remove($theme);
+
+            $this->repository
+                ->flush();
+        }
 
         return redirect()
             ->back();

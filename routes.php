@@ -32,16 +32,27 @@ Route::group(['prefix' => 'admin/theme-manager', 'middleware' => 'role:admin'], 
 
         $themes = $repository->toArray();
 
+        $activeTheme = $repository->getActivated();
+
         $table = TableManager\table(array(
-            'columns' => array('name' => ['closure' => function($value) {
+            'columns' => array('name' => ['closure' => function($value) use($activeTheme) {
                 $activate = route('theme-activate', ['theme' => $value]);
+                $delete = route('theme-remove', ['module' => $value]);
+
+                $isCurrent = $value == $activeTheme;
 
                 $template = <<<HTML
 $value
 <div class="tools">
     <a href="$activate"><i class="fa fa-check-square-o"></i></a>
-</div>
+     <a href="$delete"><i class="fa fa-trash-o"></i></a>
 HTML;
+
+                if( $isCurrent )
+                    $template .= '<i class="fa fa-check"></i>';
+
+                $template .= '</div>';
+
                 return $template;
 
             }],'description','version'),
@@ -58,7 +69,7 @@ HTML;
     Route::get('remove/{theme}', ['as' => 'theme-remove', function($theme) {
         return app('theme-service')
             ->remove($theme);
-    }]);
+    }])->where(['theme' => "^(.)*"]);
 
     /**
      * Activate theme.

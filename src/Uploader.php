@@ -97,7 +97,7 @@ class Uploader {
      * @throws ThemeUploaderException
      */
     public function remove($module) {
-        list($vendor, $name) = explode('-', $module);
+        list($vendor, $name) = explode('/', $module);
 
         $path = $this->getStoragePath();
 
