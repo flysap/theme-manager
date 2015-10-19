@@ -124,6 +124,9 @@ class Repository implements Arrayable {
      * @return bool
      */
     public function isInstalled($theme) {
+        #@todo temporary ...
+        $this->flush();
+
         return in_array($theme, array_keys($this->toArray()));
     }
 
