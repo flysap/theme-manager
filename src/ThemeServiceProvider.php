@@ -16,6 +16,11 @@ class ThemeServiceProvider extends ServiceProvider {
             ->loadConfiguration()
             ->loadViews();
 
+        /** Publish default themes . */
+        $this->publishes([
+            __DIR__.'/../themes'  => base_path('themes'),
+        ]);
+
         $this->registerMenu();
 
         /** On bootstrap set active theme . */

@@ -1,0 +1,53 @@
+.box{
+	padding: 10px;
+}
+
+.form-inline{
+	/*text-align: center;*/
+}
+
+.form-inline .default{
+	float: left;
+	/*text-align: left;*/
+}
+
+.box.opacity-box{
+	background: rgba(255,255,255, .5);
+}
+
+.form-inline .form-control,
+.form-inline label{
+	margin-right: 10px;
+	margin-bottom: 10px;
+}
+
+.mb-10{
+	margin-bottom: 10px;
+}
+
+.btn-search:before{
+	content: "\f002";
+	margin-right: 3px;
+	display: inline-block;
+    font: normal normal normal 14px/1 FontAwesome;
+    font-size: inherit;
+    text-rendering: auto;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+    transform: translate(0, 0);
+}
+
+.table > tbody > tr > td,
+.table > tbody > tr > th,
+.table > tfoot > tr > td,
+.table > tfoot > tr > th,
+.table > thead > tr > td,
+.table > thead > tr > th{
+	vertical-align: middle;
+}
+
+
+
+
+
+
